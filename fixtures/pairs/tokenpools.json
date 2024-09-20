@@ -1,0 +1,114 @@
+[
+    {
+        "model": "pairs.tokenpools",
+        "pk": 1,
+        "fields": {
+            "token": 1,
+            "pool": 1
+        }
+    },
+    {
+        "model": "pairs.tokenpools",
+        "pk": 2,
+        "fields": {
+            "token": 2,
+            "pool": 2
+        }
+    },
+    {
+        "model": "pairs.tokenpools",
+        "pk": 3,
+        "fields": {
+            "token": 3,
+            "pool": 3
+        }
+    },
+    {
+        "model": "pairs.tokenpools",
+        "pk": 4,
+        "fields": {
+            "token": 4,
+            "pool": 4
+        }
+    },
+    {
+        "model": "pairs.tokenpools",
+        "pk": 5,
+        "fields": {
+            "token": 5,
+            "pool": 5
+        }
+    },
+    {
+        "model": "pairs.tokenpools",
+        "pk": 6,
+        "fields": {
+            "token": 6,
+            "pool": 6
+        }
+    },
+    {
+        "model": "pairs.tokenpools",
+        "pk": 7,
+        "fields": {
+            "token": 7,
+            "pool": 7
+        }
+    },
+    {
+        "model": "pairs.tokenpools",
+        "pk": 8,
+        "fields": {
+            "token": 8,
+            "pool": 8
+        }
+    },
+    {
+        "model": "pairs.tokenpools",
+        "pk": 9,
+        "fields": {
+            "token": 9,
+            "pool": 9
+        }
+    },
+    {
+        "model": "pairs.tokenpools",
+        "pk": 10,
+        "fields": {
+            "token": 10,
+            "pool": 10
+        }
+    },
+    {
+        "model": "pairs.tokenpools",
+        "pk": 11,
+        "fields": {
+            "token": 11,
+            "pool": 11
+        }
+    },
+    {
+        "model": "pairs.tokenpools",
+        "pk": 12,
+        "fields": {
+            "token": 12,
+            "pool": 12
+        }
+    },
+    {
+        "model": "pairs.tokenpools",
+        "pk": 13,
+        "fields": {
+            "token": 13,
+            "pool": 13
+        }
+    },
+    {
+        "model": "pairs.tokenpools",
+        "pk": 14,
+        "fields": {
+            "token": 14,
+            "pool": 14
+        }
+    }
+]

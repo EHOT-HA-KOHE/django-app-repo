@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static "deps/css/new_pairs/new_pairs.css" %}">
+{% endblock %}
+
+{% block content %}
+
+
+{% include "includes/all_chains_buttons.html" %}
+
+
+<h1 class="welcome-textt">Welcome to Pairs in your <span style="color: #0d6efd;">{{ category_name }}</span> collection</h1>
+
+{% include "includes/table_with_tokens.html" %}
+
+{% endblock %}

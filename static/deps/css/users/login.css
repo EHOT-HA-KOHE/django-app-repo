@@ -1,0 +1,60 @@
+/* Контейнер для центрирования формы */
+.login-container {
+    display: flex;
+    justify-content: center;   /* Горизонтальное выравнивание по центру */
+    align-items: center;       /* Вертикальное выравнивание по центру */
+    height: 100vh;             /* Высота на весь экран */
+}
+
+/* Блок формы */
+.login-box {
+    background-color: #17171c;      /* Темный цвет фона */
+    padding: 40px;               /* Внутренние отступы */
+    border-radius: 12px;         /* Закругленные углы */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Тень для объема */
+    width: 600px;                /* Ширина блока */
+    text-align: center;          /* Текст по центру */
+}
+
+/* Заголовок формы */
+.login-box h2 {
+    color: white;
+    margin-bottom: 20px;
+}
+
+/* Группы полей формы */
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;           /* Выравнивание текста меток влево */
+}
+
+/* Метки полей */
+.input-group label {
+    color: white;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Поля ввода */
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+/* Кнопка входа */
+button {
+    background-color: #0d6efd;  /* Яркий цвет кнопки */
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #0d6dfdaa;  /* Изменение цвета при наведении */
+}

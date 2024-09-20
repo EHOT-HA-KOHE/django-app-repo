@@ -1,0 +1,56 @@
+/* Стили ссылок на другие сети */
+a {
+    text-decoration: none;
+}
+
+.tile-container {
+    display: flex;
+    justify-content: space-between; /* Равномерное распределение плиток */
+    gap: 5px; /* Пробелы между плитками */
+    max-width: 100%; /* Плитки будут занимать всю ширину родителя */
+    padding: 0px 0px 20px 0px;
+    box-sizing: border-box; /* Учитывает отступы и границы при вычислении ширины */
+}
+
+.chain-buttons {
+    width: 100%;
+    background-color: #333333;
+    
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px 10px;
+    border-radius: 8px;
+}
+
+.tile {
+    
+    flex-grow: 1; /* Плитки будут равномерно расширяться */
+    text-decoration: none; /* Убирает подчеркивание */
+    cursor: pointer; /* Показывает указатель руки при наведении */
+}
+
+/* Дополнительно можно убрать цвет при наведении */
+.chain-buttons:hover, a:focus, a:active {
+    text-decoration: none;
+    outline: none; /* Убирает контур, если он появляется */
+    background-color: #404040;
+}
+
+
+
+
+/* =================== */
+
+
+
+
+.welcome-textt {
+    color: white;
+    text-align: center;
+}
+
+
+
+/* =================== */

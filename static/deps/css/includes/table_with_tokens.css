@@ -1,0 +1,113 @@
+/* Включаем горизонтальную прокрутку для таблицы при необходимости */
+.table-responsive {
+    overflow-x: auto; /* Включает горизонтальную прокрутку для таблицы */
+    -webkit-overflow-scrolling: touch; /* Плавная прокрутка для мобильных устройств */
+    margin: 20px 0; /* Отступ сверху и снизу */
+}    
+
+/* Общие стили для ячеек таблицы */
+th {
+    white-space: nowrap; /* Не переносить текст внутри ячеек */
+    text-align: center; /* Центрирование текста */
+}
+td {
+    white-space: nowrap; /* Не переносить текст внутри ячеек */
+    text-align: right; /* Центрирование текста */
+}
+
+td.positive {
+    color: green; /* Установите нужный цвет */
+}
+
+td.negative {
+    color: red; /* Установите нужный цвет */
+}
+
+/* Обертка для таблицы */
+.table-wrapper {
+    padding: 2px;
+}
+
+.chain-icon {
+    text-align: center; /* Центрирование изображения по горизонтали */
+}
+
+.chain-icon {
+    max-width: 20px; /* Ширина изображения не превышает ширину ячейки */
+    max-height: auto; /* Высота изображения не превышает высоту ячейки */
+    display: block; /* Убирает пробелы под изображением */
+    margin: 0 auto; /* Центрирование изображения по горизонтали */
+}
+
+.clickable-row {
+    cursor: pointer; /* Показывает указатель руки при наведении */
+}
+
+
+
+
+/* =========================================== */
+
+/* Стили для кнопки добавления токена в подборку */
+.btn-secondary {
+    background-color: #333333;
+}
+
+.modal-header {
+    background-color: #333333;
+}
+
+.btn-close {
+    color: red;
+}
+
+
+/* Стили для модального окна добавления токена в подборку */
+
+.modal-dialog {
+    margin-top: 10%; /* Установите желаемое значение отступа сверху */
+}
+
+.modal-body {
+    background-color: #17171c;
+    border: none;
+}
+
+.modal-header {
+    border: none;
+}
+
+/* .mb-4 {
+    color: red;
+} */
+
+a {
+    text-decoration: none;
+}
+
+.add-to-user-collection {
+    margin-bottom: 2%;
+}
+
+
+/* Дополнительно можно убрать цвет при наведении */
+.tile:hover, a:focus, a:active {
+    text-decoration: none;
+    outline: none; /* Убирает контур, если он появляется */
+    background-color: #0d6efd;
+}
+
+
+
+/* ================================ */
+
+
+
+/* Уведомления (notifications) чтобы были выше модального окна */
+#notification, #jq-notification {
+    z-index: 1100 !important; /* Убедитесь, что это выше, чем z-index для модального окна */
+    background-color: #0d6efd;
+    color: white;
+    border-color: white;
+}
+

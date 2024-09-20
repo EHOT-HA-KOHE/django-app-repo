@@ -1,0 +1,15 @@
+{% load watchlist_tags %}
+{% user_collections as collections %}
+
+
+<div id="tile-container" class="tile-container tile-container-left">
+    {% for category in collections %}
+        <a href="{% url "watchlist:category_pools" category.name %}" class="tile">
+            <div>
+                {{ category.name }} ({{ category|len_of_collection }})
+                <!-- Значок корзины -->
+                <i class="fa fa-trash cart-icon" data-category="{{ category.name }}" href="{% url 'watchlist:del_category' %}"></i>
+            </div>
+        </a>
+    {% endfor %}
+</div>

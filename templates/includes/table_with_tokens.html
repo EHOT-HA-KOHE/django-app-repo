@@ -1,0 +1,99 @@
+{% load static %}
+{% load new_pairs_tags %}
+
+
+<div class="container-fluid table-wrapper">
+    <div class="table-responsive">
+        <table class="table table-dark table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    {% if is_saving_view %}
+                        <th>DEL</th> 
+                    {% else %}    
+                        <th>FOL</th> 
+                    {% endif %} 
+                    <th>CHAIN</th>
+                    <th>NAME (SYM)</th>
+                    <th>USD</th>
+                    <th>AGE</th>
+                    <th>TRANS</th>
+                    <th>VOLUME</th>
+                    <th>MAKERS</th>
+                    <th>5M</th>
+                    <th>1H</th>
+                    <th>6H</th>
+                    <th>24H</th>
+                    <th>LIQUIDITY</th>
+                    <th>MCAP</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pool in pools %}                        
+                    <tr class="clickable-row" 
+                    data-href="{% url 'pairs:pair_address' chain=pool.dex_name.blockchain.name pair_address=pool.address %}"
+                    data-pool-address-del="{{ pool.address }}" 
+                    >
+                        {% if is_saving_view %}
+                            <td>
+                                <i 
+                                class="fa fa-trash delete-icon chain-icon" 
+                                data-pool-address="{{ pool.address }}" 
+                                data-category="{{ category_name }}" 
+                                data-action="{% url 'watchlist:del_from_category' %}"
+                                ></i>
+                            </td>
+                        {% else %}
+                            <td>
+                                <i 
+                                class="fa fa-plus add-to-user-collection-button chain-icon" 
+                                id="modalButton"
+                                data-pool-address="{{ pool.address }}" 
+                                data-category="{{ category_name }}" 
+                                data-action="{% url 'watchlist:del_from_category' %}"
+                                ></i>
+                            </td>
+                        {% endif %}
+                        {% csrf_token %}
+                        <td>
+                            {% if pool.dex_name.blockchain.name == "solana" %}
+                                <img class="chain-icon" src="{% static "deps/icons/solana.svg" %}" alt="solana-icon">
+                            {% elif pool.dex_name.blockchain.name == "ethereum" %}
+                                <img class="chain-icon" src="{% static "deps/icons/ethereum.svg" %}" alt="ethereum-icon">
+                            {% elif pool.dex_name.blockchain.name == "bsc" %}
+                                <img class="chain-icon" src="{% static "deps/icons/bsc.svg" %}" alt="bsc-icon">
+                            {% elif pool.dex_name.blockchain.name == "ton" %}
+                                <img class="chain-icon" src="{% static "deps/icons/ton.webp" %}" alt="ton-icon">
+                            {% elif pool.dex_name.blockchain.name == "base" %}
+                                <img class="chain-icon" src="{% static "deps/icons/base.svg" %}" alt="base-icon">
+                            {% endif %}
+                        </td>
+                        <td>{{ pool.token.name }} ({{ pool.token.symbol }})</td>
+                        <td>${{ pool.get_price }}</td>
+                        <td>{{ pool.age_formatted }}</td>
+                        <td>{{ pool.transactions }}</td>
+                        <td>${{ pool.volume|format_number }}</td>
+                        <td>{{ pool.makers }}</td>
+
+                        <td class="{% if pool.price_change_5m > 0 %}positive{% elif pool.price_change_5m < 0 %}negative{% endif %}">
+                            {{ pool.price_change_5m }}%
+                        </td>
+                        <td class="{% if pool.price_change_1h > 0 %}positive{% elif pool.price_change_1h < 0 %}negative{% endif %}">
+                            {{ pool.price_change_1h }}%
+                        </td>
+                        <td class="{% if pool.price_change_6h > 0 %}positive{% elif pool.price_change_6h < 0 %}negative{% endif %}">
+                            {{ pool.price_change_6h }}%
+                        </td>
+                        <td class="{% if pool.price_change_24h > 0 %}positive{% elif pool.price_change_24h < 0 %}negative{% endif %}">
+                            {{ pool.price_change_24h }}%
+                        </td>
+                        
+                        <td>${{ pool.liquidity|format_number }}</td>
+
+                        <td>${{ pool.mcap|format_number }}</td>
+                        
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>

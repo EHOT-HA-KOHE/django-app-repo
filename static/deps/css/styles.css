@@ -1,0 +1,208 @@
+body {
+    overflow-x: hidden;
+    /* Отключает горизонтальную прокрутку */
+    margin: 0;
+    padding: 0;
+    background-color: #0d0d0d;
+    /* Задаем цвет фона */
+    color: white;
+    /* Задаем цвет текста (по желанию) */
+}
+
+
+
+/* ================ */
+
+
+
+.menu-logo-title-button-link {
+    text-decoration: none;
+    /* Убирает подчеркивание */
+    cursor: default;
+    /* Изменяет курсор на стандартный, как у обычного текста */
+}
+
+/* Стили для текста */
+.text-logo {
+    color: white;
+    /* Цвет текста */
+    font-size: 1.25rem;
+    /* Размер шрифта */
+    font-weight: bold;
+    /* Жирное начертание текста */
+}
+
+.menu-logo-title-button {
+    display: flex;
+    justify-content: space-between;
+    /* Размещает элементы по краям контейнера */
+    align-items: center;
+    /* Вертикально центрирует элементы */
+    padding: 10px;
+    /* Внешние отступы */
+    background-color: #17171c;
+    /* Цвет фона заголовка */
+}
+
+/* Стили для секции с логотипом и текстом */
+.logo-section {
+    display: flex;
+    align-items: center;
+    /* Центрирует элементы по вертикали */
+}
+
+/* Стили для логотипа */
+.logo-mini {
+    width: 40px;
+    /* Ширина логотипа */
+    height: auto;
+    /* Сохраняет пропорции логотипа */
+    margin-right: 10px;
+    /* Отступ справа от логотипа */
+}
+
+
+
+/* ================== */
+
+
+
+/* Стили для бокового меню */
+.sidebar {
+    width: 200px;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: #17171c;
+    transition: width 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.nav {
+    flex: 1; /* Заполняет доступное пространство, оставляя место для кнопки Login внизу */
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    width: 100%;
+}
+
+.nav-item {
+    width: 80%;
+    margin-bottom: 0;
+    margin-left: 5%;
+}
+
+.bi-bar-chart,
+.bi-heart,
+.bi-person,
+.bi-info-square {
+    padding-right: 10%;
+}
+
+/* Стили для ссылок меню */
+.nav-link {
+    background-color: transparent;
+    color: white;
+    padding: 10px;
+    white-space: nowrap;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+    color: #0d6efd;
+    background-color: #333; /* Цвет фона при наведении или фокусе */
+    border-radius: 5px; /* Скругление углов при наведении или фокусе */
+}
+
+
+
+.login-button-container {
+    margin-top: auto; /* Отталкивает контейнер к низу меню */
+    padding: 15px; /* Отступы вокруг кнопки */
+    text-align: center; /* Центрирование кнопки внутри контейнера */
+    width: 100%;
+}
+
+.btn {
+    width: 100%; /* Сделать кнопку шириной на всю доступную ширину контейнера */
+}
+
+
+
+/* ================== */
+
+
+
+.search-input {
+    margin-right: 5%;
+    margin-left: 5%;
+    margin-bottom: 10%;
+    /* background-color: #333333; */
+}
+
+.custom-input {
+    background-color: #333333;
+    /* Измените этот цвет на любой, который вам нужен */
+    color: rgba(255, 255, 255, 0.16);
+    /* Цвет текста внутри поля */
+    border: 0px solid #ccc;
+    /* Цвет и стиль рамки */
+    padding: 10px;
+    /* Внутренние отступы */
+    border-radius: 5px;
+    /* Радиус скругления углов */
+}
+
+/* Цвет фона, когда поле ввода находится в фокусе */
+.custom-input:focus {
+    background-color: #404040;
+    /* Цвет фона при фокусе */
+    color: #ffffff;
+    /* Цвет текста-заполнителя */
+    outline: none;
+    /* Убирает стандартное выделение */
+}
+
+.custom-input::placeholder {
+    color: #999;
+    /* Цвет текста-заполнителя */
+}
+
+
+
+/* ================== */
+
+
+
+main.content {
+    margin: 10px 10px 10px 220px;
+    padding: 20px;
+}
+
+
+
+/* ================== */
+/* Стили модального окна резултатов поиска */
+
+.list-group-item {
+    color: white;
+    background-color: #333333;
+}
+
+.text-muted {
+    color: white !important; 
+}
+
+.custom-modal-dialog {
+    max-width: 60%;
+}

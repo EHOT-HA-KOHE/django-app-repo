@@ -1,0 +1,152 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} {{ chain|capfirst }} </title>
+
+    <!-- Подключение jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Подключение Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Подключение иконок Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Подключение кастомных стилей -->
+    <link href="{% static 'deps/css/styles.css' %}" rel="stylesheet">
+    <link href="{% static 'deps/css/includes/table_with_tokens.css' %}" rel="stylesheet">
+    <!-- Подключение кастомных стилей отдельного html -->
+    {% block css %}{% endblock css %}
+
+    <!-- Favicons for different platforms -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static "deps/favicon/apple-touch-icon.png" %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static "deps/favicon/favicon-32x32.png" %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static "deps/favicon/favicon-16x16.png" %}">
+    <link rel="manifest" href="{% static "deps/favicon/site.webmanifest" %}">
+</head>
+<body>
+    <!-- Модальное окно -->
+    {% comment %} <div id="searchModal" class="modal" style="display: none;">
+        <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div id="searchResults"></div> <!-- Здесь будут результаты поиска -->
+        </div>
+    </div> {% endcomment %}
+
+    <!-- Разметка модального окна корзины -->
+    <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable custom-modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    Резултаты поиска
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {% comment %} <h3 class="text-center mb-4">В какую подборку добавить пул?</h3> {% endcomment %}
+                    <div class="container" id="cart-items-container">
+
+                        <!-- Список текущих категорий -->
+                        
+                        <div class="d-flex flex-column">
+                            <div id="searchResults"></div> <!-- Здесь будут результаты поиска -->
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <!-- Боковое меню -->
+    <div id="sidebar" class="sidebar">
+        <a class="menu-logo-title-button-link" href="{% url "main:index" %}">
+            <div class="menu-logo-title-button">
+                <div class="logo-section">
+                    <img src="{% static 'deps/icons/shark_logo_transparent.png' %}" alt="logo" class="logo-mini">
+                    <span class="text-logo">DEX Watch</span>
+                </div>
+            </div>
+        </a>
+
+        <form class="search-input" role="search" action="{% url 'pair:search' %}" method="get" id="searchForm">
+            <input class="form-control me-2 custom-input" type="search" name="q" placeholder="Search" aria-label="Search">
+        </form>
+
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url "new-pairs:chain" "all" %}">
+                    <i class="bi bi-bar-chart"></i> <span>New Pairs</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url "watchlist:categories" %}">
+                    <i class="bi bi-heart"></i> <span>Favorites</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% if user.is_authenticated %}{% url "user:profile" %}{% else %}{% url "user:login" %}{% endif %}">
+                    <i class="bi bi-person"></i> <span>Account</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url "main:about" %}">
+                    <i class="bi bi-info-square"></i> <span>About</span>
+                </a>
+            </li>
+        </ul>
+        {% if user.id_admin or user.is_staff %}
+            <div class="login-button-container">
+                <a href="{% url "admin:index" %}" class="btn btn-primary">Admin Panel</a>
+            </div>
+        {% endif %}
+
+        {% if user.is_authenticated %}
+            <!-- Кнопка Logout -->
+            <div class="login-button-container">
+                <a href="{% url "user:logout" %}" class="btn btn-primary">Logout</a>
+            </div>
+        {% else %}
+            <!-- Кнопка Login -->
+            <div class="login-button-container">
+                <a href="{% url "user:login" %}" class="btn btn-primary">Login</a>
+            </div>
+        {% endif %}
+    </div>
+
+
+    <!-- Основной контент -->
+    <main class="content">
+        {% include "includes/notifications.html" %}
+        {% block content %}
+        <!-- Основной контент страниц будет вставлен сюда -->
+        {% endblock %}
+    </main>    
+
+
+    <!-- Подключение Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <!-- Подключение кастомного скрипта -->
+    <script src="{% static 'deps/js/scripts.js' %}"></script>
+</body>
+</html>

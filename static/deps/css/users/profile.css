@@ -1,0 +1,12 @@
+.bg-dark {
+    background-color: #17171c !important;
+}
+
+.btn-dark {
+    background-color: #333333 !important;
+}
+
+.btn-dark:hover,
+.btn-dark:focus {
+    background-color: #0d6efd !important;
+}

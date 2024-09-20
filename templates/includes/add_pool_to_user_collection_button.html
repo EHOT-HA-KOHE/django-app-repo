@@ -1,0 +1,12 @@
+{% load static %}
+{% load watchlist_tags %}
+{% user_collections as collections %}
+
+<br>
+<div>
+    <button type="button" class="btn btn-dark btn-secondary" id="modalButton"
+        aria-expanded="false">
+        <span id="goods-in-cart-count">Сохранить в подборку</span>
+    </button>
+</div>
+{% include "includes/modal_add_to_user_collections.html" %}

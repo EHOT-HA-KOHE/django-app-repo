@@ -1,0 +1,193 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block css %}
+    <link rel="stylesheet" href="{% static "deps/css/pairs/pairs.css" %}">
+    <link rel="stylesheet" href="{% static "deps/css/main/index.css" %}">
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="main-wrapper">
+
+        <h2>График цены токена</h2>
+        <br>
+        
+        <div class='flex-content'>
+
+            <div class='chart-wrapper'>
+                <canvas id="priceChart" width="400" height="200"></canvas>
+            </div>
+
+
+            <div class="details-wrapper">
+                <div class="container mt-4 mt-4-custom">
+                    <div class="card text-bg-dark card-custom">
+                        <div class="card-header">
+                            Liquidity Pair Details
+                        </div>
+                        <div class="card-body">
+                            <div class="info-section">
+                                <div class="row">
+                                    <div class="col-md-4 info-label">CHAIN:</div>
+                                    <div class="col-md-8 info-value">{{ pool.blockchain.name }}</div>
+                                </div>
+                            </div>
+                            
+                            <div class="info-section">
+                                <div class="row">
+                                    <div class="col-md-4 info-label">DEX:</div>
+                                    <div class="col-md-8 info-value">{{ pool.dex_name.name }}</div>
+                                </div>
+                            </div>
+                            
+                            <div class="info-section">
+                                <div class="row">
+                                    <div class="col-md-4 info-label">Address:</div>
+                                    <div class="col-md-8 info-value">{{ pool.address }}</div>
+                                </div>
+                            </div>
+                            
+                            <div class="info-section">
+                                <div class="row">
+                                    <div class="col-md-4 info-label">Token 1:</div>
+                                    <div class="col-md-8 info-value">{{ pool.token.name }} ({{ pool.token.symbol }})</div>
+                                </div>
+                            </div>
+                            
+                            <div class="info-section">
+                                <div class="row">
+                                    <div class="col-md-4 info-label">Price (USD):</div>
+                                    <div class="col-md-8 info-value">${{ pool.get_price }}</div>
+                                </div>
+                            </div>
+                            
+                            <div class="info-section">
+                                <div class="row">
+                                    <div class="col-md-4 info-label">Volume:</div>
+                                    <div class="col-md-8 info-value">${{ pool.volume }}</div>
+                                </div>
+                            </div>
+                            
+                            <div class="info-section">
+                                <div class="row">
+                                    <div class="col-md-4 info-label">Liquidity:</div>
+                                    <div class="col-md-8 info-value">${{ pool.liquidity }}</div>
+                                </div>
+                            </div>
+                            
+                            <div class="info-section">
+                                <div class="row">
+                                    <div class="col-md-4 info-label">Market Cap:</div>
+                                    <div class="col-md-8 info-value">${{ pool.mcap }}</div>
+                                </div>
+                            </div>
+                            
+                            <div class="info-section">
+                                <div class="row">
+                                    <div class="col-md-4 info-label">Transactions:</div>
+                                    <div class="col-md-8 info-value">{{ pool.transactions }}</div>
+                                </div>
+                            </div>
+                            
+                            <div class="info-section">
+                                <div class="row">
+                                    <div class="col-md-4 info-label">Makers:</div>
+                                    <div class="col-md-8 info-value">{{ pool.makers }}</div>
+                                </div>
+                            </div>
+                            
+                            <div class="info-section">
+                                <div class="row">
+                                    <div class="col-md-4 info-label">5 Min Price Change:</div>
+                                    <div class="col-md-8 info-value">{{ pool.price_change_5m }}%</div>
+                                </div>
+                            </div>
+                            
+                            <div class="info-section">
+                                <div class="row">
+                                    <div class="col-md-4 info-label">1 Hour Price Change:</div>
+                                    <div class="col-md-8 info-value">{{ pool.price_change_1h }}%</div>
+                                </div>
+                            </div>
+                            
+                            <div class="info-section">
+                                <div class="row">
+                                    <div class="col-md-4 info-label">6 Hour Price Change:</div>
+                                    <div class="col-md-8 info-value">{{ pool.price_change_6h }}%</div>
+                                </div>
+                            </div>
+                            
+                            <div class="info-section">
+                                <div class="row">
+                                    <div class="col-md-4 info-label">24 Hour Price Change:</div>
+                                    <div class="col-md-8 info-value">{{ pool.price_change_24h }}%</div>
+                                </div>
+                            </div>
+                            
+                            <div class="info-section">
+                                <div class="row">
+                                    <div class="col-md-4 info-label">Age:</div>
+                                    <div class="col-md-8 info-value">{{ pool.age_formatted }}</div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            
+            </div>
+
+        </div>
+        
+    
+
+
+    </div>
+
+    {% include "includes/add_pool_to_user_collection_button.html" %}
+    
+
+    <!-- Подключаем Chart.js, Luxon и его адаптер -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.0.1/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.3.0/build/global/luxon.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@1.3.0"></script>
+
+    <script>
+        // Получение данных из контекста Django
+        const priceData = {{ price_data|safe }};
+
+        // Данные для графика
+        const ctx = document.getElementById('priceChart').getContext('2d');
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: priceData.timestamps,
+                datasets: [{
+                    label: 'Цена токена',
+                    data: priceData.prices,
+                    borderColor: 'rgb(13, 110, 253)',
+                    fill: false,
+                    tension: 0.1
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        type: 'time',
+                        time: {
+                            unit: 'minute',
+                            tooltipFormat: 'YYYY-MM-DD HH:mm:ss',
+                        }
+                    },
+                    y: {
+                        beginAtZero: false
+                    }
+                }
+            }
+        });
+    </script>
+
+{% endblock %}

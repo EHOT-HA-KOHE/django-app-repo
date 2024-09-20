@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static "deps/css/main/index.css" %}">
+{% endblock %}
+
+{% block content %}
+    <h1>Welcome to DEX Watch, please choose the chain to tracking...</h1>    
+
+    <div class="tile-container">
+        <a href="{% url "new-pairs:chain" "all" %}">
+            <div class="tile">ALL</div>
+        </a>
+        <a href="{% url "new-pairs:chain" "ethereum" %}">
+            <div class="tile">ETHEREUM</div>
+        </a>
+        <a href="{% url "new-pairs:chain" "base" %}">
+            <div class="tile">BASE</div>
+        </a>
+        <a href="{% url "new-pairs:chain" "solana" %}">
+            <div class="tile">SOLANA</div>
+        </a>
+        <a href="{% url "new-pairs:chain" "ton" %}">
+            <div class="tile">TON</div>
+        </a>
+        <a href="{% url "new-pairs:chain" "bsc" %}">
+            <div class="tile">BSC</div>
+        </a>
+    </div>
+
+{% endblock %}

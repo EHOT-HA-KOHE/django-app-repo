@@ -1,0 +1,38 @@
+[
+    {
+        "model": "pairs.dexnames",
+        "pk": 1,
+        "fields": {
+            "name": "uniswap_v1",
+            "address": "Address of - uniswap_v1",
+            "blockchain": 1
+        }
+    },
+    {
+        "model": "pairs.dexnames",
+        "pk": 2,
+        "fields": {
+            "name": "uniswap_v2",
+            "address": "Address of - uniswap_v2",
+            "blockchain": 1
+        }
+    },
+    {
+        "model": "pairs.dexnames",
+        "pk": 3,
+        "fields": {
+            "name": "sushiswap",
+            "address": "Address of - sushiswap",
+            "blockchain": 1
+        }
+    },
+    {
+        "model": "pairs.dexnames",
+        "pk": 4,
+        "fields": {
+            "name": "radium",
+            "address": "Address of - radium",
+            "blockchain": 3
+        }
+    }
+]

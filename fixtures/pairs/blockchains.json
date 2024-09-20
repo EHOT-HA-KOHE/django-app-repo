@@ -1,0 +1,23 @@
+[
+    {
+        "model": "pairs.blockchains",
+        "pk": 1,
+        "fields": {
+            "name": "ethereum"
+        }
+    },
+    {
+        "model": "pairs.blockchains",
+        "pk": 3,
+        "fields": {
+            "name": "solana"
+        }
+    },
+    {
+        "model": "pairs.blockchains",
+        "pk": 5,
+        "fields": {
+            "name": "base"
+        }
+    }
+]

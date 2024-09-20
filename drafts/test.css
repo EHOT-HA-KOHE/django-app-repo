@@ -1,0 +1,14 @@
+body {
+    color: white;
+    background-color: black;
+}
+
+.table-striped {
+    background-color: aqua;
+    color: red;
+}
+
+.clickable-row {
+    background-color: antiquewhite;
+    color: brown;
+}
