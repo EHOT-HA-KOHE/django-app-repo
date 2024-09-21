@@ -1,5 +1,5 @@
 <div class="container">
-  <ul class="list-group">
+  <ul class="list-group gap-3">
       {% for pool in query_results %}
           <li class="list-group-item d-flex justify-content-between align-items-center">
             <a href="{% url 'pairs:pair_address' chain=pool.dex_name.blockchain.name pair_address=pool.address %}">

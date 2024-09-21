@@ -30,6 +30,8 @@ class PairView(TemplateView):
         }
         context['price_data'] = price_data
 
+        print(price_data)
+
         return context
     
 
